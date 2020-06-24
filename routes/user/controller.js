@@ -13,7 +13,7 @@ module.exports = {
                     let token = jwt.sign({ id: user._id }, config.secret, {expiresIn: 86400})
                     res.status(200).send({auth: true, token})
                 } else {
-                    res.status(500).send({auth: false, msg: 'Login credentials are not correct'})
+                    res.status(500).send({auth: false, msg: err})
                 }
             })
         })
@@ -29,11 +29,12 @@ module.exports = {
         newUser.save()
             .then(result =>{
                 console.log(result)
-                res.status(201).send({msg: 'Register Successful', user_id: result._id})
+                let token = jwt.sign({ id: result._id }, config.secret, {expiresIn: 86400})
+                    res.status(200).send({auth: true, token})
             })
             .catch(err =>{
                 console.error(err)
-                res.status(500).send({msg: 'Register Unsuccessful', user_id: result._id})
+                res.status(500).send({auth:false, msg: err})
             })
             
     }
