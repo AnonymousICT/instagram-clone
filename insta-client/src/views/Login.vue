@@ -7,7 +7,7 @@
         <main class="form-group">
             <input type="text" v-model="email" placeholder="Email" />
             <input type="password" v-model="password" placeholder="Password"/>
-            <button class="login-btn">Log in</button>
+            <button class="login-btn" @click="login">Log in</button>
         </main>
         <footer>
             <p>Don't have an account? <router-link class="link" to='/register'>Sign up here</router-link></p>
@@ -22,6 +22,25 @@ export default {
         return {
             email: '',
             password: '',
+        }
+    },
+    methods: {
+        login () {
+            let api_url = this.$store.state.api_url
+
+            if(this.email == '' || this.password == '') return alert('Please fill in all fields')
+            this.$http.post(api_url + 'user/login', {
+                email: this.email,
+                password: this.password
+            }).then(response => {
+                if (response.data.auth) {
+                    localStorage.setItem('jwt', response.data.token)
+                    this.$router.push('/');
+                    } else {
+                        alert ('error')
+                    }
+                }
+            ).catch(err=>console.log(err))
         }
     }
 }

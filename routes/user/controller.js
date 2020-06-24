@@ -11,9 +11,9 @@ module.exports = {
                 if(err) throw err;
                 if(isMatch) {
                     let token = jwt.sign({ id: user._id }, config.secret, {expiresIn: 86400})
-                    res.status(200).send({msg: 'Login is successful', token})
+                    res.status(200).send({auth: true, token})
                 } else {
-                    res.status(500).send({msg: 'Login credentials are not correct'})
+                    res.status(500).send({auth: false, msg: 'Login credentials are not correct'})
                 }
             })
         })
