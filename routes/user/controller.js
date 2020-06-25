@@ -4,8 +4,15 @@ const config = require('../../config')
 
 module.exports = {
     login: (req, res) => {
-        model.findOne({ email: req.body.email }, (err, user) => {
-            if(err) throw err;
+        model.findOne({ email: req.body.email.toLowerCase() }, (err, user) => {
+            if(err) {
+                res.status(500).send({auth:false, msg:err})
+            }
+
+            if(!user) {
+                res.status(401).send({auth: false, msg: "User does not exist"})
+                return
+            }
 
             user.comparePassword(req.body.password, (err, isMatch) => {
                 if(err) throw err;
@@ -13,7 +20,7 @@ module.exports = {
                     let token = jwt.sign({ id: user._id }, config.secret, {expiresIn: 86400})
                     res.status(200).send({auth: true, token})
                 } else {
-                    res.status(500).send({auth: false, msg: err})
+                    res.status(401).send({auth: false, msg: "Password is incorrect"})
                 }
             })
         })
@@ -28,13 +35,12 @@ module.exports = {
 
         newUser.save()
             .then(result =>{
-                console.log(result)
                 let token = jwt.sign({ id: result._id }, config.secret, {expiresIn: 86400})
                     res.status(200).send({auth: true, token})
             })
             .catch(err =>{
-                console.error(err)
-                res.status(500).send({auth:false, msg: err})
+                res.status(400).send({auth:false, msg: "This account already exists"})
+                console.log(err)
             })
             
     }

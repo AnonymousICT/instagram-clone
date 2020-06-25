@@ -6,10 +6,10 @@
         </header>
 
         <main class="form-group">
-            <input type="text" v-model="firstName" placeholder="First name"/>
-            <input type="text" v-model="lastName" placeholder="Last name"/>
-            <input type="text" v-model="email" placeholder="Email" />
-            <input type="password" v-model="password" placeholder="Password"/>
+            <input type="text" v-model="firstName" placeholder="First name" />
+            <input type="text" v-model="lastName" placeholder="Last name" />
+            <input type="text" v-model="email" placeholder="Email"/>
+            <input type="password" v-model="password" placeholder="Password" />
             <button class="login-btn" @click="registerAccount">Create Account</button>
         </main>
         <footer>
@@ -26,7 +26,7 @@ export default {
             firstName: "",
             lastName:"",
             email: "",
-            password: ""
+            password: "",
         }
     },
     methods: {
@@ -48,10 +48,10 @@ export default {
                     localStorage.setItem('jwt', response.data.token)
                     this.$router.push('/');
                     } else {
-                        alert ('error')
+                        console.error(response.error);
                     }
                 }
-            ).catch(err=>console.log(err))
+            ).catch((error) => alert(error.response.data.msg))
         }
     }
 }
