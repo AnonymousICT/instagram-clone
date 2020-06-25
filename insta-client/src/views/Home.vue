@@ -1,8 +1,8 @@
 <template>
-  <div class="home">
+  <main class="feed">
     Hello, World
     <button @click='logout'>Logout</button>
-  </div>
+  </main>
 </template>
 
 
@@ -10,8 +10,7 @@
 export default {
   methods: {
     logout() {
-      localStorage.removeItem('jwt')
-      this.$router.push('/login')
+      this.$store.commit('logout')
     }
   }
 }

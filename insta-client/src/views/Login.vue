@@ -34,8 +34,7 @@ export default {
                 password: this.password
             }).then(response => {
                 if (response.data.auth) {
-                    localStorage.setItem('jwt', response.data.token)
-                    this.$router.push('/');
+                    this.$store.commit('login', response.data.token)
                     } else {
                         console.log("Error: ", response.data.msg)
                     }
