@@ -6,7 +6,7 @@ module.exports = {
     login: (req, res) => {
         model.findOne({ email: req.body.email.toLowerCase() }, (err, user) => {
             if(err) {
-                res.status(500).send({auth:false, msg:err})
+                res.status(500).send({auth:false, msg:"Internal Server error"})
             }
 
             if(!user) {
@@ -40,7 +40,6 @@ module.exports = {
             })
             .catch(err =>{
                 res.status(400).send({auth:false, msg: "This account already exists"})
-                console.log(err)
             })
             
     }
