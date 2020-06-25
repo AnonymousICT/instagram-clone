@@ -14,4 +14,39 @@
     background-color: #f7f7f7;
     font-family: 'Roboto', Helvetica, sans-serif;
   }
+
+  .form-group {
+        flex: 1;
+        display: flex;
+        justify-content: flex-start;
+        flex-flow: column;
+        padding: 25px;
+    }
+
+    input {
+        width: 100%;
+        height: 30px;
+        border: 1px solid #dddddd;
+        margin-bottom: 15px;
+        text-indent: 5px;
+        background: #eeeeee;
+        outline: none;
+      &:focus {
+          border: 1px solid #aaaaaa;
+      }
+    }
+
+
+    button {
+        width: 100%;
+        height: 30px;
+        background-color: #4c68d7;
+        appearance: none;
+        border: none;
+        outline: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 18px;
+        font-weight: 700;
+    }
 </style>
