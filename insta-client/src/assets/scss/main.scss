@@ -47,8 +47,12 @@ body {
         font-weight: 700;
     }
 
-    // Login styles
+    // Pages
     @import './pages/login.scss';
-
-    //register styles
     @import './pages/register.scss';
+    @import './pages/feed.scss';
+
+    //components
+    @import './components/header.scss';
+    @import './components/footer.scss';
+    @import './components/post.scss';

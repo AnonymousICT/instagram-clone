@@ -1,5 +1,5 @@
 <template>
-    <header>
-            <h3>INSTA<span>CLONE</span></h3>
+    <header class="header">
+            <h3 class="title">INSTA<span>CLONE</span></h3>
         </header>
 </template>
