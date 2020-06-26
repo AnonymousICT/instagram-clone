@@ -27,7 +27,6 @@ export default {
     methods: {
         login () {
             let api_url = this.$store.state.api_url
-
             if(this.email == '' || this.password == '') return alert('Please fill in all fields')
             this.$http.post(api_url + 'user/login', {
                 email: this.email,

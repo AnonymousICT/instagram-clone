@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+// import axios from 'axios'
 import store from '../store'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import Post from '../views/Post.vue'
+// import Profile from '../views/Profile.vue'
 
 Vue.use(VueRouter)
 
@@ -27,12 +30,19 @@ Vue.use(VueRouter)
   {
     path: '/',
     name: 'Home',
-    component: Home
-    ,meta: {
+    component: Home,
+    meta: {
       requiresAuth: true
-    }
+    },
   },
-
+  {
+    path: '/newpost',
+    name: 'Post',
+    component: Post,
+    meta: {
+      requiresAuth: true
+    },
+  },
 ]
 
 const router = new VueRouter({
