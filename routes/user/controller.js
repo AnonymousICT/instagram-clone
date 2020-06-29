@@ -1,4 +1,5 @@
 const model = require('./model')
+const postModel = require('../post/model')
 const jwt = require('jsonwebtoken')
 const config = require('../../config')
 
@@ -42,5 +43,26 @@ module.exports = {
                 res.status(400).send({auth:false, msg: "This account already exists"})
             })
             
+    },
+
+    getProfile: (req, res) => {
+        let user_id = jwt.decode(req.body.auth_token).id;
+        model.findById(user_id)
+            .then(user => {
+                if(!user) {
+                    res.send({success:false, msg: "User not Found"})
+                }
+
+                postModel.find({user_id: user})
+                    .then(posts =>{
+                        res.send({
+                            success: true,
+                            details: {
+                                display_name: user.firstName + ' ' + user.lastName,
+                                posts: posts
+                            }
+                        })
+                    })
+            })
     }
 }

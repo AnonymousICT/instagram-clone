@@ -8,7 +8,7 @@
       </section>
       <footer class="post-desc">
         <p><strong>{{ post.display_name }}:</strong> {{ post.desc }}</p>
-        <p class="timestamp">{{ timestampToDate(post.timestamp) }}</p>
+        <p class="timestamp">{{ timestampToDate(post.timeStamp) }}</p>
       </footer>
     </article>
   </main>
@@ -22,9 +22,9 @@ export default {
     }
   },
   methods: {
-    timestampToDate (timestamp) {
-      timestamp = new Number(timestamp);
-      let d = new Date(timestamp);
+    timestampToDate (timeStamp) {
+      timeStamp = new Number(timeStamp);
+      let d = new Date(timeStamp);
       let year = d.getFullYear();
       let month = d.getMonth() + 1;
       if (month < 10) {
