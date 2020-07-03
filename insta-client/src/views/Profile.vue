@@ -1,7 +1,24 @@
 <template>
   <main class="view profile">
     <section class="profile-head">
-      <strong>Name:</strong> {{ display_name }}
+      <img class="profile-image" src="https://cdn0.iconfinder.com/data/icons/superuser-web-kit/512/686909-user_people_man_human_head_person-512.png" >
+      <div class="profile-container">
+        <h2 class="profile-user-name">{{ display_name }}</h2>
+        <ul class="profile-stats">
+          <li class="profile-stat">
+            <span>0</span> 
+            <p>posts</p>
+          </li>
+          <li class="profile-stat">
+            <span>0</span> 
+            <p>followers</p>
+          </li>
+          <li class="profile-stat">
+            <span>0</span> 
+            <p>following</p>
+          </li>
+        </ul>
+      </div>
     </section>
     <section class="posts">
       <div class="post" v-for="post in posts" :key="post._id">
