@@ -2,6 +2,6 @@
     "root": "./insta-client/dist",
     "clean_urls": true,
     "routes": {
-      "/**": "index.html"
+        "/**": "index.html"
     }
-  }
+}
